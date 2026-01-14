@@ -144,7 +144,7 @@ POSTGRES_DB
 
 
 
-Notes
+### Notes
 
 The deploy section in stack-etl.yml is only effective in Docker Swarm
 
@@ -153,6 +153,6 @@ PostgreSQL initialization scripts run only on first startup
 Removing volumes will delete all persisted data
 
 
-License
+### License
 
 This project is provided for learning and demonstration purposes.
