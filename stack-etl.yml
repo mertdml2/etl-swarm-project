@@ -1,0 +1,30 @@
+services:
+  backend:
+    image: backend:latest
+    volumes:
+    - shared-data:/data
+
+  ingester:
+    image: ingester:latest
+    depends_on:
+    - db
+    volumes:
+    - shared-data:/data
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: etl
+      POSTGRES_PASSWORD: etl
+      POSTGRES_DB: etl
+    volumes:
+    - pgdata:/var/lib/postgresql/data
+    - /home/ubuntu/etl-swarm-project/data/init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      placement:
+        constraints:
+        - node.hostname == manager
+
+volumes:
+  shared-data:
+  pgdata:
